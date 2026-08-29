@@ -1,0 +1,29 @@
+import java.util.Calendar;
+import java.util.Scanner;
+
+public class Solution {
+
+    static String findDay(int month, int day, int year) {
+        // Calendar.MONTH is 0-indexed, so subtract 1 from month
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month - 1, day);
+
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+
+        String[] days = {
+            "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY",
+            "THURSDAY", "FRIDAY", "SATURDAY"
+        };
+
+        return days[dayOfWeek - 1];
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int month = in.nextInt();
+        int day = in.nextInt();
+        int year = in.nextInt();
+        String ans = findDay(month, day, year);
+        System.out.println(ans);
+    }
+}
