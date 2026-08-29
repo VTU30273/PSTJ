@@ -1,0 +1,26 @@
+class Solution {
+    public int dayOfYear(String date) {
+        String[] parts = date.split("-");
+        int year = Integer.parseInt(parts[0]);
+        int month = Integer.parseInt(parts[1]);
+        int day = Integer.parseInt(parts[2]);
+        
+        int[] daysInMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        
+        int totalDays = day;
+        for (int m = 0; m < month - 1; m++) {
+            totalDays += daysInMonth[m];
+        }
+        
+        // Add 1 for the leap day if we're past February in a leap year
+        if (month > 2 && isLeapYear(year)) {
+            totalDays += 1;
+        }
+        
+        return totalDays;
+    }
+    
+    private boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 100 == 0 && year % 400 == 0);
+    }
+}
